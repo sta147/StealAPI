@@ -12,7 +12,10 @@ namespace StealAPI.Controllers
     {
         public Crime GetAEmptyCrime()
         {
-            return new Crime();
+            return new Crime()
+            {
+                Location = new LocationModel()
+            };
         }
         public Crime GetACrimeSomewhereNearLocation(float lat, float lng)
         {
