@@ -14,17 +14,24 @@ namespace StealAPI.Controllers
         public Crime GetARandomCrime()
         {
             CrimeFetcher crimeFetcher = new CrimeFetcher();
-            var crimelist = crimeFetcher.FetchACrime();
+            var crimelist = crimeFetcher.FetchSomeCrimes();
             if (crimelist.Count > 0)
                 return crimelist[0];
 
-            return new Crime()
-            {
-                Location = new LocationModel()
-            };
+            return new Crime();
         }
         public Crime GetACrimeSomewhereNearLocation(float lat, float lng)
         {
+            var location = new Location()
+            {
+                Longitude = lng,
+                Latitude = lat
+            };
+            CrimeFetcher crimeFetcher = new CrimeFetcher();
+            var crimelist = crimeFetcher.FetchCrimesNearLocation(location);
+            if (crimelist.Count > 0)
+                return crimelist[0];
+
             return new Crime();
         }
     }

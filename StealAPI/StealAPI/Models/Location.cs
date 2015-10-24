@@ -5,9 +5,9 @@ using System.Web;
 
 namespace StealAPI.Models
 {
-    public class LocationModel
+    public class Location
     {
-        public float Longitude { get; set; }
-        public float Latitude { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
     }
 }

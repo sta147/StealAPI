@@ -10,37 +10,47 @@ namespace StealAPI.Fetchers
 {
     public class CrimeFetcher
     {
-        private string policUrl = "https://data.police.uk/api/crimes-at-location?date=2013-06&lat=53.471906&lng=-2.257676";
+        private const string CrimesAtLocationUri = "https://data.police.uk/api/crimes-at-location";
 
-        public List<Crime> FetchACrime()
+        public List<Crime> FetchSomeCrimes()
         {
-            List<Crime> crimeList = new List<Crime>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(policUrl);
-
-
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-            HttpResponseMessage response = client.GetAsync("").Result;  
-            if (response.IsSuccessStatusCode)
+            var mosiLocation = new Location()
             {
-                var crimes = response.Content.ReadAsAsync<IEnumerable<Crime>>().Result;
+                Longitude = -2.255562,
+                Latitude = 53.476788
+            };
+            return FetchCrimesNearLocation(mosiLocation);
+            
+        }
 
-                return crimes.ToList();
-                foreach (var crime in crimes)
+        public List<Crime> FetchCrimesNearLocation(Location location)
+        {
+            
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(CrimesAtLocationUri);
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string uriQuerystring = 
+                    string.Format("?date=2013-07&lat={0}&lng={1}", 
+                         location.Latitude, location.Longitude  );
+                
+                HttpResponseMessage response = client.GetAsync(uriQuerystring).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    crimeList.Add(crime);
+                    var crimes = response.Content.ReadAsAsync<IEnumerable<Crime>>().Result;
+
+                    return crimes.ToList();
+                }
+                else
+                {
+                    throw new Exception(
+                        string.Format("{0} ({1})", (int) response.StatusCode, response.ReasonPhrase));
                 }
             }
-            else
-            {
-                throw  new Exception(
-                    string.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
-            }
 
-            return crimeList;
-        } 
+        }
     }
 }
