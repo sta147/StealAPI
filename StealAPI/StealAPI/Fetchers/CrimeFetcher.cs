@@ -10,7 +10,7 @@ namespace StealAPI.Fetchers
 {
     public class CrimeFetcher
     {
-        private const string CrimesAtLocationUri = "https://data.police.uk/api/crimes-at-location";
+        private const string AllStreetCrimesUri = "https://data.police.uk/api/crimes-street/all-crime";
 
         public List<Crime> FetchSomeCrimes()
         {
@@ -29,7 +29,7 @@ namespace StealAPI.Fetchers
             using (HttpClient client = new HttpClient())
             {
 
-                client.BaseAddress = new Uri(CrimesAtLocationUri);
+                client.BaseAddress = new Uri(AllStreetCrimesUri);
                 client.DefaultRequestHeaders.Accept.Add(
                     new MediaTypeWithQualityHeaderValue("application/json"));
 
