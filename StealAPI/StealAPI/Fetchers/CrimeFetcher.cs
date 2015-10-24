@@ -36,7 +36,8 @@ namespace StealAPI.Fetchers
             }
             else
             {
-                Console.WriteLine("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase);
+                throw  new Exception(
+                    string.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
             }
 
             return crimeList;

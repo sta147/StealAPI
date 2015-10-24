@@ -11,7 +11,7 @@ namespace StealAPI.Controllers
 {
     public class CrimeController : ApiController
     {
-        public Crime GetAEmptyCrime()
+        public Crime GetARandomCrime()
         {
             CrimeFetcher crimeFetcher = new CrimeFetcher();
             var crimelist = crimeFetcher.FetchACrime();
