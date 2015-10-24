@@ -9,8 +9,12 @@ using StealAPI.Models;
 
 namespace StealAPI.Controllers
 {
+    [RoutePrefix("api/Crime")]
     public class CrimeController : ApiController
     {
+
+        [HttpGet]
+        [Route("GetARandomCrime")]
         public Crime GetARandomCrime()
         {
             CrimeFetcher crimeFetcher = new CrimeFetcher();
@@ -20,6 +24,9 @@ namespace StealAPI.Controllers
 
             return new Crime();
         }
+
+        [HttpGet]
+        [Route("GetACrimeSomewhereNearLocation")]
         public Crime GetACrimeSomewhereNearLocation(float lat, float lng)
         {
             var location = new Location()
