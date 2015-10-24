@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using StealAPI.Fetchers;
 using StealAPI.Models;
 
 namespace StealAPI.Controllers
@@ -12,6 +13,11 @@ namespace StealAPI.Controllers
     {
         public Crime GetAEmptyCrime()
         {
+            CrimeFetcher crimeFetcher = new CrimeFetcher();
+            var crimelist = crimeFetcher.FetchACrime();
+            if (crimelist.Count > 0)
+                return crimelist[0];
+
             return new Crime()
             {
                 Location = new LocationModel()
