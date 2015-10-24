@@ -10,6 +10,10 @@ namespace StealAPI.Controllers
 {
     public class CrimeController : ApiController
     {
+        public Crime GetAEmptyCrime()
+        {
+            return new Crime();
+        }
         public Crime GetACrimeSomewhereNearLocation(float lat, float lng)
         {
             return new Crime();
