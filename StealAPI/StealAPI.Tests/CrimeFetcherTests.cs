@@ -20,11 +20,7 @@ namespace StealAPI.Tests
         public void CrimeFretcherCanFetchACrimeSomewhereNearALocation()
         {
             var crimeFretcher = new CrimeFetcher();
-            var mosiLocation = new Location()
-            {
-                Longitude = -2.255562,
-                Latitude = 53.476788
-            };
+            var mosiLocation = new Location(-2.255562, 53.476788);
             var crimeList = crimeFretcher.FetchCrimesNearLocation(mosiLocation);
             Assert.AreNotEqual(0, crimeList.Count);
 

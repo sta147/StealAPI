@@ -27,14 +27,10 @@ namespace StealAPI.Controllers
 
         [HttpGet]
         [Route("GetACrimeSomewhereNearLocation")]
-        public Crime GetACrimeSomewhereNearLocation(float lat, float lng)
+        public Crime GetACrimeSomewhereNearLocation(double lat, double lng)
         {
-            var location = new Location()
-            {
-                Longitude = lng,
-                Latitude = lat
-            };
-            CrimeFetcher crimeFetcher = new CrimeFetcher();
+            var location = new Location(lng, lat);
+            var crimeFetcher = new CrimeFetcher();
             var crimelist = crimeFetcher.FetchCrimesNearLocation(location);
             if (crimelist.Count > 0)
                 return crimelist[0];

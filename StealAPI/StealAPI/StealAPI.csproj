@@ -69,6 +69,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebApiContrib.Formatting.Jsonp, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiContrib.Formatting.Jsonp.3.0.2\lib\net45\WebApiContrib.Formatting.Jsonp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -102,13 +106,17 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BlackSpotController.cs" />
     <Compile Include="Controllers\CrimeController.cs" />
+    <Compile Include="Controllers\Direction.cs" />
+    <Compile Include="Controllers\IDirection.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DirectionFinder.cs" />
     <Compile Include="Fetchers\CrimeFetcher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Crime.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="NorthEastSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,11 +14,7 @@ namespace StealAPI.Fetchers
 
         public List<Crime> FetchSomeCrimes()
         {
-            var mosiLocation = new Location()
-            {
-                Longitude = -2.255562,
-                Latitude = 53.476788
-            };
+            var mosiLocation = new Location(-2.255562, 53.476788);
             return FetchCrimesNearLocation(mosiLocation);
             
         }

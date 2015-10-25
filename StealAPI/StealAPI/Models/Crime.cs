@@ -9,9 +9,9 @@ namespace StealAPI.Models
     {
         public Crime()
         {
-            Location = new Location();
+            Location = new Location(0, 0);
         }
-
+        
         public int Id { get; set; }
         public string PersistentId { get; set; }
         public string Context { get; set; }
