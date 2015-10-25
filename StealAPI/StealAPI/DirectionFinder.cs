@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using StealAPI.Controllers;
 using StealAPI.Fetchers;
@@ -22,9 +23,17 @@ namespace StealAPI
             var crimelist = crimeFetcher.FetchCrimesNearLocation(location);
             if (crimelist.Count > 0)
             {
-                NorthEastDirection northEastDirection = new NorthEastDirection(crimelist, location);
+                NorthEastDirection northEastDirection = new NorthEastDirection(
+                    x => x.Location.Longitude > location.Longitude
+                        && x.Location.Latitude > location.Latitude, 
+                        crimelist, location);
             }
-            return new Direction();
+            return new Direction()
+            {
+                Name = "North East",
+                Bearing = 45,
+                Count = 5
+            };
         }
     }
 }

@@ -8,15 +8,12 @@ namespace StealAPI
 {
     public class NorthEastDirection : IDirection
     {
-        private Location location;
-        
 
-        public NorthEastDirection(List<Crime> crimelist, Location location) 
+        public NorthEastDirection(Func<Crime, bool> predicate, List<Crime> crimelist, Location location) 
         {
-            this.location = location;
-            var count = crimelist.Count(x => x.Location.Longitude > location.Longitude
-                                 && x.Location.Latitude > location.Latitude);
+            Count = crimelist.Count( predicate);
         }
+        
 
         public int Bearing { get; set; }
         public string Name { get; set; }

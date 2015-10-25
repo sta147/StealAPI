@@ -14,9 +14,10 @@ namespace StealAPI.Tests
             var crimeFretcher = new CrimeFetcher();
             var mosiLocation = new Location(-2.255562, 53.476788);
             var crimeList = crimeFretcher.FetchCrimesNearLocation(mosiLocation);
-            NorthEastDirection northEastDirection = new NorthEastDirection(crimeList, mosiLocation);
-            var NumberOfCrimesToTheNorthEast = northEastDirection.Count;
-            Assert.AreNotEqual(NumberOfCrimesToTheNorthEast, crimeList.Count);
+            var northEastDirection = new NorthEastDirection(x => x.Location.Longitude > mosiLocation.Longitude
+                        && x.Location.Latitude > mosiLocation.Latitude, crimeList, mosiLocation);
+            var numberOfCrimesToTheNorthEast = northEastDirection.Count;
+            Assert.AreNotEqual(numberOfCrimesToTheNorthEast, crimeList.Count);
         }
     }
 }
