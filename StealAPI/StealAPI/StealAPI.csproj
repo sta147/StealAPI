@@ -100,6 +100,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BlackSpotController.cs" />
     <Compile Include="Controllers\CrimeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Fetchers\CrimeFetcher.cs" />
